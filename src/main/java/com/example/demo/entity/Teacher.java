@@ -24,7 +24,11 @@ public class Teacher {
 
     @Column(name = "income_Teacher")
     private int income_Teacher;
+    
+    @Column(name = "teacher_Falcuty")
+    private String teacher_Falcuty;
 
+    
     public Teacher(){}
 
     public int getId_Teacher() {
@@ -59,5 +63,14 @@ public class Teacher {
         this.income_Teacher = income_Teacher;
     }
 
+    public String getTeacher_Falcuty() {
+        return teacher_Falcuty;
+    }
+
+    public void setTeacher_Falcuty(String teacher_Falcuty) {
+        this.teacher_Falcuty = teacher_Falcuty;
+    }
+
+    
     
 }

@@ -6,6 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,8 +23,14 @@ public class Student {
     @Column(name = "nameStudent")
     private String nameStudent;
 
+    
     @Column(name = "major")
     private String major;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Falcuty")
+    private FacultyOfIT falcuty;
+
 
     public Student(){}
 
@@ -47,6 +57,12 @@ public class Student {
     public void setMajor(String major) {
         this.major = major;
     }
+    public FacultyOfIT getFalcuty() {
+        return falcuty;
+    }
 
+    public void setFalcuty(FacultyOfIT falcuty) {
+        this.falcuty = falcuty;
+    }
 
 }
