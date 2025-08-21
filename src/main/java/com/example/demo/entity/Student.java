@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +32,8 @@ public class Student {
     @JoinColumn(name = "id_Falcuty")
     private FacultyOfIT falcuty;
 
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private Student_Card student_Card;
 
     public Student(){}
 
