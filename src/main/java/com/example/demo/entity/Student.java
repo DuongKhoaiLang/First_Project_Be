@@ -68,4 +68,12 @@ public class Student {
         this.falcuty = falcuty;
     }
 
+    public Student_Card getStudent_Card() {
+        return student_Card;
+    }
+
+    public void setStudent_Card(Student_Card student_Card) {
+        this.student_Card = student_Card;
+    }
+
 }

@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
+
 
 @RestController
 @RequestMapping("/student")
@@ -22,10 +26,14 @@ public class StudentController {
     public StudentController(StudentService studentService){
         this.studentService = studentService;
     }
-
     @GetMapping
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudent(){
         return studentService.getAllStudent();
+    }
+
+    @GetMapping("/{id}")
+    public Student getMethodName(@PathVariable int id) {
+        return studentService.getStudentById(id);
     }
 
     @PostMapping
@@ -35,6 +43,11 @@ public class StudentController {
 
     @DeleteMapping("/{id}")
     public void deleteStudentById(@PathVariable int id){
-        studentService.deleteStudent(id);
+        this.studentService.deleteStudent(id);
+    }
+
+    @PutMapping("/{id}")
+    public Student putMethodName(@PathVariable int id, @RequestBody Student student) {
+        return studentService.updateStudentById(id, student);
     }
 }
