@@ -39,7 +39,7 @@ public class StudentService{
             student.setMajor(student_Update.getMajor());
             student.setFalcuty(student_Update.getFalcuty());
             student.setStudent_Card(student_Update.getStudent_Card());
-            return student;
+            return studentrepository.save(student);
         }).orElseThrow(() -> new RuntimeException("Student not found"));
     }
 }

@@ -3,7 +3,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,5 +51,10 @@ public class StudentController {
     @PutMapping("/{id}")
     public Student putMethodName(@PathVariable int id, @RequestBody Student student) {
         return studentService.updateStudentById(id, student);
+    }
+    // Xử lý RuntimeException riêng
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return ResponseEntity.status(404).body(ex.getMessage());
     }
 }

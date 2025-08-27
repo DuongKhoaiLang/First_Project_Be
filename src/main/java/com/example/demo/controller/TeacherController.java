@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Teacher;
 import com.example.demo.service.TeacherService;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
+
 
 @RestController
 @RequestMapping("/teacher")
@@ -24,17 +28,26 @@ public class TeacherController {
 
     @GetMapping
     public List<Teacher> getAllTeacher(){
-        return this.teacherService.getAllTeacher();
+        return teacherService.getAllTeacher();
     }
 
+    @GetMapping("/{id}")
+    public Teacher getTeacherByIdTeacher(@PathVariable int id) {
+        return teacherService.getTeacherById(id);
+    }
+    
     @PostMapping
-    public Teacher saveTeacher(@RequestBody Teacher teacher){
-        return this.teacherService.saveTeacher(teacher);
+    public Teacher getTeacherById(@RequestBody Teacher teacher){
+        return teacherService.saveTeacher(teacher);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTeacherById(@PathVariable int id){
-        this.teacherService.deleteTeacherById(id);
+        teacherService.deleteTeacherById(id);
     }
 
+    @PutMapping("/{id}")
+    public Teacher updateTeacherById(@PathVariable int id, @RequestBody Teacher entity) {
+        return teacherService.updateTeacher(id, entity);
+    }
 }

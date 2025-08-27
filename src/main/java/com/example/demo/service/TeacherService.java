@@ -20,11 +20,24 @@ public class TeacherService {
         return this.teacherRepository.findAll();
     }
 
+    public Teacher getTeacherById(int id){
+        return this.teacherRepository.findById(id).orElse(null);
+    }
+
     public Teacher saveTeacher(Teacher teacher){
         return this.teacherRepository.save(teacher);
     }
 
     public void deleteTeacherById(int id){
         this.teacherRepository.deleteById(id);
+    }
+
+    public Teacher updateTeacher(int id,Teacher teacher_Update){
+        return this.teacherRepository.findById(id).map( teacher -> {
+            teacher.setName_Teacher(teacher_Update.getName_Teacher());
+            teacher.setIncome_Teacher((int)teacher_Update.getIncome_Teacher());
+            teacher.setTeacher_Falcuty(teacher_Update.getTeacher_Falcuty());
+            return teacherRepository.save(teacher);
+        }).orElseThrow(() -> new RuntimeException("teacher not found"));
     }
 }
