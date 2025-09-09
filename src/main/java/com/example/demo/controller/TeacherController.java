@@ -35,6 +35,21 @@ public class TeacherController {
     public Teacher getTeacherByIdTeacher(@PathVariable int id) {
         return teacherService.getTeacherById(id);
     }
+
+    @GetMapping("/search/by-income")
+    public List<Teacher> getByGreaterThan(@RequestParam(defaultValue = "1",name = "dk") int income) {
+        return teacherService.findByIncomeGreaterThan(income);
+    }
+    
+    @GetMapping("/search/by-name")
+    public Teacher getByNameTeacher(@RequestParam(name = "name") String name_Teacher){
+        return teacherService.findByNameTeacher(name_Teacher);
+    }
+
+    @GetMapping("/search/by-role")
+    public List<Teacher> getByRoleTeacher(@RequestParam(name = "role") String Role){
+        return teacherService.findByRole(Role);
+    }
     
     @PostMapping
     public Teacher getTeacherById(@RequestBody Teacher teacher){

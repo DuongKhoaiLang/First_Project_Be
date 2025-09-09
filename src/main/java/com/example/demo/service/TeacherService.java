@@ -40,4 +40,16 @@ public class TeacherService {
             return teacherRepository.save(teacher);
         }).orElseThrow(() -> new RuntimeException("teacher not found"));
     }
+
+    public List<Teacher> findByIncomeGreaterThan(int income){
+        return this.teacherRepository.findByGreaterThan(income);
+    }
+
+    public Teacher findByNameTeacher(String name){
+        return this.teacherRepository.findByName(name);
+    }
+
+    public List<Teacher> findByRole(String major){
+        return this.teacherRepository.findByRole(major);
+    }
 }
