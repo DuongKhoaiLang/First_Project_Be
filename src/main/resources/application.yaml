@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/reelse"
+    username: root
+    password: "09122005Vi@"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
