@@ -4,6 +4,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.request.ExerciseCreationRequest;
+import com.example.demo.dto.request.ExerciseUpdateRequest;
 import com.example.demo.entity.Exercise;
 import com.example.demo.repository.ExerciseRepository;
 
@@ -20,18 +22,22 @@ public class ExerciseService {
         return exerciseRepository.findById(id).orElseThrow(() -> new RuntimeException("NotFound"));
     }
 
-    public Exercise addExercise(Exercise ex){
+    public Exercise addExercise(ExerciseCreationRequest exercise){
+        Exercise ex = new Exercise();
+        ex.setContent(exercise.getContent());
+        ex.setInput(exercise.getInput());
+        ex.setOutput(exercise.getOutput());
+        ex.setName(exercise.getName());
+        ex.setSource(exercise.getSource());
         return exerciseRepository.save(ex);
     }
 
-    public void updateExercise(String id, Exercise exercise){
+    public void updateExercise(String id, ExerciseUpdateRequest exercise){
         Exercise ex = getExerciseById(id);
         if(ex != null){
-            ex.setSource(exercise.getSource());
             ex.setContent(exercise.getContent());
             ex.setInput(exercise.getInput());
             ex.setOutput(exercise.getOutput());
-            ex.setName(exercise.getName());
             exerciseRepository.save(ex);
         }
         else{

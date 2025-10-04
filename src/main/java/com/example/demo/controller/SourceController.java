@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.request.SourceUpdateRequest;
+import com.example.demo.dto.request.SuorceCreationRequest;
 import com.example.demo.entity.Source;
 import com.example.demo.service.SourceService;
 
@@ -32,12 +34,12 @@ public class SourceController {
     }
 
     @PostMapping
-    public void addSource(@RequestBody Source source){
+    public void addSource(@RequestBody SuorceCreationRequest source){
         sourceService.addSource(source);
     }
 
     @PutMapping("/{id}")
-    public void updateSource(@PathVariable String id,@RequestBody Source source){
+    public void updateSource(@PathVariable String id,@RequestBody SourceUpdateRequest source){
         sourceService.updateSource(id, source);
     }
 

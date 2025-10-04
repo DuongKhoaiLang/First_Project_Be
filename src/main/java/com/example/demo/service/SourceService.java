@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.request.SourceUpdateRequest;
+import com.example.demo.dto.request.SuorceCreationRequest;
 import com.example.demo.entity.Source;
 import com.example.demo.repository.SourceRepository;
 
@@ -13,8 +15,10 @@ public class SourceService {
     @Autowired
     private SourceRepository sourceRepository;
 
-    public Source addSource(Source source){
-        return sourceRepository.save(source);
+    public Source addSource(SuorceCreationRequest source){
+        Source sour = new Source();
+        sour.setName(source.getName());
+        return sourceRepository.save(sour);
     }
 
     public List<Source> getAllSource(){
@@ -25,11 +29,12 @@ public class SourceService {
         return sourceRepository.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
     }
 
-    public void updateSource(String id,Source source){
+    public void updateSource(String id,SourceUpdateRequest source){
         Source sou = getSourceById(id);
-        sou.setExercise(source.getExercise());
-        sou.setName(source.getName());
-
+        if(sou != null){
+            sou.setName(source.getName());
+            sourceRepository.save(sou);
+        }
     }
 
     public void deleteSoureById(String id){

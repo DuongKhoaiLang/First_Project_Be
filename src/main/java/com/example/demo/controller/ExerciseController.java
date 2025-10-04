@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.request.ExerciseCreationRequest;
+import com.example.demo.dto.request.ExerciseUpdateRequest;
 import com.example.demo.entity.Exercise;
 import com.example.demo.service.ExerciseService;
 
@@ -34,12 +36,12 @@ public class ExerciseController {
     }
 
     @PostMapping
-    public void addExercise(@RequestBody Exercise exercise){
+    public void addExercise(@RequestBody ExerciseCreationRequest exercise){
         exerciseService.addExercise(exercise);
     }
 
     @PutMapping("/{id}")
-    public void updateExercise(@PathVariable String id, @RequestBody Exercise exercise){
+    public void updateExercise(@PathVariable String id, @RequestBody ExerciseUpdateRequest exercise){
         exerciseService.updateExercise(id, exercise);
     }
 
