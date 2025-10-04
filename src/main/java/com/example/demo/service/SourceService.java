@@ -16,6 +16,9 @@ public class SourceService {
     private SourceRepository sourceRepository;
 
     public Source addSource(SuorceCreationRequest source){
+        if (sourceRepository.existsByName(source.getName())) {
+            throw(new RuntimeException("source name exist"));
+        }
         Source sour = new Source();
         sour.setName(source.getName());
         return sourceRepository.save(sour);

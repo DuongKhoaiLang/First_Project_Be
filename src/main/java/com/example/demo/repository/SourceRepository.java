@@ -8,5 +8,5 @@ import com.example.demo.entity.Source;
 
 @Repository
 public interface SourceRepository extends JpaRepository<Source,String>{
-    
+    boolean existsByName(String name);
 }

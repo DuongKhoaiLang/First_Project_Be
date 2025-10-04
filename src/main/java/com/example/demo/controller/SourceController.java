@@ -17,6 +17,8 @@ import com.example.demo.dto.request.SuorceCreationRequest;
 import com.example.demo.entity.Source;
 import com.example.demo.service.SourceService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/source")
 public class SourceController {
@@ -34,7 +36,7 @@ public class SourceController {
     }
 
     @PostMapping
-    public void addSource(@RequestBody SuorceCreationRequest source){
+    public void addSource(@RequestBody @Valid SuorceCreationRequest source){
         sourceService.addSource(source);
     }
 
