@@ -1,7 +1,6 @@
 package com.example.demo.dto.request;
 
-import com.example.demo.entity.Source;
-
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,11 +14,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ExerciseCreationRequest {
-        String name;
-        String Content;
-        String input;
-        String output;
-        Source source;
-
+public class SourceCreationRequest {
+    @Size(min = 5,message = "NAME_INVALIDED")
+    String name;
 }

@@ -6,21 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.request.SourceUpdateRequest;
-import com.example.demo.dto.request.SuorceCreationRequest;
+import com.example.demo.dto.request.SourceCreationRequest;
 import com.example.demo.entity.Source;
+import com.example.demo.exception.AppException;
+import com.example.demo.exception.ErrorCode;
+import com.example.demo.mapper.SourceMapper;
 import com.example.demo.repository.SourceRepository;
+import com.mysql.cj.log.Log;
 
 @Service
 public class SourceService {
     @Autowired
     private SourceRepository sourceRepository;
 
-    public Source addSource(SuorceCreationRequest source){
+    @Autowired
+    private SourceMapper sourceMapper;
+
+    public Source addSource(SourceCreationRequest source){
         if (sourceRepository.existsByName(source.getName())) {
-            throw(new RuntimeException("source name exist"));
+            throw(new AppException(ErrorCode.USER_EXISTED));
         }
-        Source sour = new Source();
-        sour.setName(source.getName());
+
+        Source sour = sourceMapper.toSource(source);
+        System.out.println("----------------------------");
         return sourceRepository.save(sour);
     }
 
@@ -29,13 +37,13 @@ public class SourceService {
     }
 
     public Source getSourceById(String id){
-        return sourceRepository.findById(id).orElseThrow(() -> new RuntimeException("Not Found"));
+        return sourceRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOTFOUND));
     }
 
     public void updateSource(String id,SourceUpdateRequest source){
         Source sou = getSourceById(id);
         if(sou != null){
-            sou.setName(source.getName());
+            sourceMapper.updateSource(sou,source);
             sourceRepository.save(sou);
         }
     }

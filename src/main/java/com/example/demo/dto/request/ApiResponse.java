@@ -1,6 +1,6 @@
 package com.example.demo.dto.request;
 
-import com.example.demo.entity.Source;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,14 +12,12 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ExerciseCreationRequest {
-        String name;
-        String Content;
-        String input;
-        String output;
-        Source source;
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ApiResponse <T>{
+    int code = 1000;
+    String massage;
+    T result;
 }

@@ -1,29 +1,19 @@
 package com.example.demo.dto.request;
 
-public class ExerciseUpdateRequest {
-    private String Content;
-    private String input;
-    private String output;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
-    
-    public String getContent() {
-        return Content;
-    }
-    public void setContent(String content) {
-        Content = content;
-    }
-    public String getInput() {
-        return input;
-    }
-    public void setInput(String input) {
-        this.input = input;
-    }
-    public String getOutput() {
-        return output;
-    }
-    public void setOutput(String output) {
-        this.output = output;
-    }
-    
-    
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class ExerciseUpdateRequest {
+        String Content;
+        String input;
+        String output;
 }
