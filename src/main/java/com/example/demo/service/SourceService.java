@@ -26,9 +26,7 @@ public class SourceService {
         if (sourceRepository.existsByName(source.getName())) {
             throw(new AppException(ErrorCode.USER_EXISTED));
         }
-
         Source sour = sourceMapper.toSource(source);
-        System.out.println("----------------------------");
         return sourceRepository.save(sour);
     }
 

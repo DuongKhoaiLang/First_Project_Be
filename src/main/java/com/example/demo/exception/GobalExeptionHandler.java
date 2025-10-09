@@ -5,7 +5,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.example.demo.dto.request.ApiResponse;
+import com.example.demo.dto.response.ApiResponse;
 
 import ch.qos.logback.core.spi.ErrorCodes;
 
