@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.demo.dto.response.ApiResponse;
 
-import ch.qos.logback.core.spi.ErrorCodes;
 
 @ControllerAdvice
 public class GobalExeptionHandler {

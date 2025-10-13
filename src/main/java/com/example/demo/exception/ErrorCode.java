@@ -7,7 +7,9 @@ public enum ErrorCode {
     NAME_INVALIDED(1003,"user name at least 5 character"),
     USER_PASSWORD_UNVALID(1004,"user password at least 8 character"),
     USER_NAME_UNVALID(1004,"username at least 5 character"),
-    UNCATEGORIZED_EXCEPTION(9999,"uncategorized error");
+    UNCATEGORIZED_EXCEPTION(9999,"uncategorized error"),
+    NOT_AUTHENTICATED(1005,"Not Authenticated")
+    ;
 
 
 
