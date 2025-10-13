@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface UserTestRepository extends JpaRepository<UserforStudying,String>{
-
+    public boolean existsByUserName(String userName);
 }

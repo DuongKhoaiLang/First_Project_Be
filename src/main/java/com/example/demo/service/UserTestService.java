@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.response.ApiResponse;
+import com.example.demo.dto.request.UserCreationRequest;
+import com.example.demo.dto.request.UserUpdateRequest;
 import com.example.demo.entity.UserforStudying;
 import com.example.demo.exception.AppException;
 import com.example.demo.exception.ErrorCode;
@@ -20,12 +21,29 @@ public class UserTestService {
     @Autowired
     private UserMapper userMapper;
 
-    List<UserforStudying> getAllUser(){
+    public List<UserforStudying> getAllUser(){
         return userTestRepository.findAll();
     }
 
-    UserforStudying getUserById(String id){
+    public UserforStudying getUserById(String id){
         return userTestRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOTFOUND));
     }
 
+    public UserforStudying addUser(UserCreationRequest user){
+        if(userTestRepository.existsByUserName(user.getUserName())){
+            throw new AppException(ErrorCode.USER_EXISTED);
+        }
+        UserforStudying us = userMapper.toUserforStudying(user);
+        return userTestRepository.save(us);
+    }
+
+    public void updateUser(String id,UserUpdateRequest userUpdateRequest){
+        UserforStudying user = getUserById(id);
+        userMapper.updateUserforStudying(user, userUpdateRequest);
+        userTestRepository.save(user);
+    }
+
+    public void deleteUser(String id){
+        userTestRepository.deleteById(id);
+    }
 }
