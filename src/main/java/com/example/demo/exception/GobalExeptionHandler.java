@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.demo.dto.response.ApiResponse;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @ControllerAdvice
 public class GobalExeptionHandler {
     
@@ -16,6 +18,7 @@ public class GobalExeptionHandler {
         ApiResponse apiResponse = new ApiResponse<>();
         apiResponse.setCode(ErrorCode.UNCATEGORIZED_EXCEPTION.getCode());
         apiResponse.setMassage(ErrorCode.UNCATEGORIZED_EXCEPTION.getMessage());
+        log.info(exception.toString());
         return ResponseEntity.badRequest().body(apiResponse);
     }
 

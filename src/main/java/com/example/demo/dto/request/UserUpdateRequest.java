@@ -1,5 +1,7 @@
 package com.example.demo.dto.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +15,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserUpdateRequest {
-    String userName;
+    @Email(message = "EMAIL_UNVALIDED")
+    String userEmail;
+
+    @Size(min = 8,message = "USER_PASSWORD_UNVALIDED")
     String userPassword;
 }
